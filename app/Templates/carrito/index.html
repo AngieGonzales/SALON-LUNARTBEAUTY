@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='car.css') }}">
+    <script src="https://kit.fontawesome.com/f98b44af14.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>Carrito de Compras</title>
+    <style>
+
+        /* Estilos para el menú de navegación */
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap');
+            
+        .header {
+            background: #cccccc;
+            padding: 15px 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .Logo h2 {
+            color: #000000;
+            font-size: 2.6em;
+            font-weight: 700;
+            font-family: 'Arizonia';
+            text-decoration: none; /* Quitar la línea debajo */
+        }
+        
+
+        .menu a {
+            color: #555555;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #000000;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f9fafb;
+            color: #333333;
+            margin: 0;
+            padding-top: 100px; /* Ajusta el padding para el header */
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+            font-size: 2.2em;
+            margin: 0; /* Cambia esto a 0 para eliminar el margen inferior */
+            font-weight: 300;
+            letter-spacing: 1px;
+            border: none; /* Asegúrate de que no haya borde */
+        }
+        
+
+        /* Ajustar el cuadro del carrito */
+        .carrito {
+            background-color: #ffffff;
+            padding: 50px 70px; /* Aumentar padding interno */
+            max-width: 1600px; /* Ajustar el ancho máximo */
+            height: auto; /* Ajustar la altura automáticamente */
+            margin: 80px auto;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Ajustar la tabla dentro del cuadro */
+        table {
+            width: 100%; /* Asegurar que la tabla ocupe todo el cuadro */
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            transform: scale(1); /* Mantener el contenido de la tabla en su tamaño original */
+        }
+        
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        
+        th {
+            background-color: #f4f4f4;
+            color: #555555;
+            font-weight: 900;
+        }
+        
+        td {
+            background-color: #ffffff;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-update, .btn-delete, .btn-empty, .btn-comprar {
+            background: linear-gradient(to right, #d46e9a, #555555);
+            color: white;
+            border: none;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 12px 20px; /* Incrementar el tamaño del padding */
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
+        }
+
+        .btn-update:hover, .btn-delete:hover, .btn-empty:hover, .btn-comprar:hover {
+            background: linear-gradient(to right, #c586a1, #333333);
+        }
+
+        /* Botón comprar más destacado */
+        .btn-comprar {
+            background: linear-gradient(to right, #d46e9a, #333333);
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 70px;
+            padding: 5px;
+            font-size: 1em;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #d46e9a;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="Logo">
+                <h2>LunArt Beauty</h2>
+            </div>
+
+            <nav class="menu">
+                <a href="{{ url_for('menu.ruta_inicio') }}">INICIO</a>
+                <a href="#">SERVICIOS</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carrito">
+        <h2>Carrito de Compras</h2>
+        <table id="tablaCarrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoCarrito">
+            </tbody>
+        </table>
+        <h3>Total: <span id="total">$0</span></h3>
+        <button id="vaciarCarrito" class="btn-empty">Vaciar Carrito</button>
+        <button id="comprarCarrito" class="btn-comprar">Comprar</button>
+    </div>
+
+    <script>
+        function formatearPrecio(precio) {
+            // Asegurarse de que el precio sea un número
+            precio = parseFloat(precio);
+            
+            // Formatear el precio con dos decimales sin usar Intl.NumberFormat
+            return '$ ' + precio.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        function actualizarTabla() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let total = 0;
+
+            const cuerpoCarrito = document.getElementById('cuerpoCarrito');
+            cuerpoCarrito.innerHTML = '';
+
+            carrito.forEach((item, index) => {
+                const subtotal = item.precio * item.cantidad;
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${item.nombre}</td>
+                    <td><input type="number" class="cantidad" value="${item.cantidad}" min="1" data-index="${index}"></td>
+                    <td>${formatearPrecio(item.precio)}</td>
+                    <td>${formatearPrecio(subtotal)}</td>
+                    <td>
+                        <button class="btn-update" data-index="${index}">Actualizar</button>
+                        <button class="btn-delete" data-index="${index}">Eliminar</button>
+                    </td>`;
+                cuerpoCarrito.appendChild(fila);
+                total += subtotal;
+            });
+
+            document.getElementById('total').innerText = formatearPrecio(total);
+
+            document.querySelectorAll('.btn-update').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const cantidadInput = document.querySelector(`.cantidad[data-index="${index}"]`);
+                    const nuevaCantidad = parseInt(cantidadInput.value);
+
+                    if (nuevaCantidad > 0) {
+                        carrito[index].cantidad = nuevaCantidad;
+                        localStorage.setItem('carrito', JSON.stringify(carrito));
+                        actualizarTabla();
+                    } else {
+                        alert('La cantidad debe ser mayor a 0.');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.btn-delete').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    carrito.splice(index, 1);
+                    localStorage.setItem('carrito', JSON.stringify(carrito));
+                    actualizarTabla();
+                });
+            });
+        }
+
+        document.getElementById('vaciarCarrito').addEventListener('click', function() {
+            if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+                localStorage.removeItem('carrito');
+                actualizarTabla();
+            }
+        });
+
+        document.getElementById('comprarCarrito').addEventListener('click', function() {
+            if (confirm('¿Deseas confirmar la compra de los productos en tu carrito?')) {
+                generarFactura();
+            }
+        });
+
+        function generarFactura() {
+            const { jsPDF } = window.jspdf;
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const doc = new jsPDF();
+
+            // Configuración de estilos
+            doc.setFontSize(20);
+            doc.setTextColor(212, 110, 154); // Color primario: #d46e9a
+            doc.text('Factura LunArt Beauty', 105, 20, { align: 'center' });
+
+            doc.setFontSize(12);
+            doc.setTextColor(85, 85, 85); // Color secundario: #555555
+            doc.text(`Fecha: ${new Date().toLocaleString()}`, 20, 30);
+            doc.text(`Nº de Factura: FAC-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`, 20, 40);
+
+            // Tabla de productos
+            doc.setFillColor(240, 240, 240);
+            doc.rect(15, 50, 180, 10, 'F');
+            doc.setTextColor(51, 51, 51); // Color texto: #333333
+            doc.setFontSize(10);
+            doc.text('Producto', 20, 57);
+            doc.text('Cantidad', 80, 57);
+            doc.text('Precio', 120, 57);
+            doc.text('Subtotal', 160, 57);
+
+            let y = 70;
+            let total = 0;
+            carrito.forEach((item, index) => {
+                const subtotal = item.precio * item.cantidad;
+                total += subtotal;
+                
+                if (index % 2 !== 0) {
+                    doc.setFillColor(250, 250, 250);
+                    doc.rect(15, y - 5, 180, 10, 'F');
+                }
+                
+                doc.text(item.nombre, 20, y);
+                doc.text(item.cantidad.toString(), 80, y);
+                doc.text(formatearPrecio(item.precio), 120, y);
+                doc.text(formatearPrecio(subtotal), 160, y);
+                y += 10;
+            });
+
+            // Total
+            doc.setFillColor(212, 110, 154);
+            doc.rect(120, y, 75, 10, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(12);
+            doc.text(`Total: ${formatearPrecio(total)}`, 190, y + 7, { align: 'right' });
+
+            // Pie de página
+            doc.setTextColor(85, 85, 85);
+            doc.setFontSize(10);
+            doc.text('Gracias por su compra en LunArt Beauty', 105, 280, { align: 'center' });
+
+            // Descargar el PDF
+            doc.save('factura_lunart_beauty.pdf');
+
+            localStorage.removeItem('carrito');
+            actualizarTabla();
+        }
+
+        document.addEventListener('DOMContentLoaded', actualizarTabla);
+    </script>
+</body>
+</html>

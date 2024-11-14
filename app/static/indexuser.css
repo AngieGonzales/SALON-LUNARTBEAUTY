@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7; /* Soft, off-white background */
+}
+header {
+    background-color: #eaeaea; /* Light grey background */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    display: flex;
+}
+header nav {
+    flex-grow: 1;
+    text-align: right;
+}
+.fondo ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.fondo ul li {
+    margin: 0 15px;
+    display: inline-block;
+    margin-top: 2%;
+}
+
+.fondo ul li a {
+    text-decoration: none;
+    color: #444343; /* Muted text color */
+    font-size: 18px;
+    transition: color 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+.fondo ul li a:hover {
+    color: #b5838d; /* Matching soft rose on hover */
+}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 10%;
+    font-size: 2.4em;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 25%;
+    width: 50%;
+}
+h2 {
+    font-family: 'Arizonia', cursive;
+    color: #000000; /* Soft muted rose color */
+    margin: 0;
+    font-size: 2.5em;
+    margin-left: 10%;
+}
+.tabla {
+     margin-top: 10%;
+}
+table {
+    width: 80%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #535353;
+    margin-left: 10%;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center; /* Centra el texto de las celdas */
+    border-bottom: 1px solid #868686;
+    font-size: 15px;
+}
+
+th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.btn-edit, .btn-delete {
+    text-decoration: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-edit {
+    background: linear-gradient(to right, #d46e9a, #0a0a0a);
+    margin-right: 20px;
+}
+.btn-edit:hover {
+    background-color: #e0add2;
+}
+.btn-delete {
+    background: linear-gradient(to right, #d46e9a, #0a0a0a);
+}
+.btn-delete:hover {
+    background-color: #e0add2;
+}
+.styled-link {
+    display: inline-block;
+    background: linear-gradient(to right, #d46e9a, #0a0a0a); /* Gradiente de fondo */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    margin: 10px 0; /* Espaciado entre enlaces */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Transición suave al hacer hover */
+    margin-left: 47%;
+}
+
+/* Cambiar color al hacer hover */
+.styled-link:hover {
+    background-color: #e2669c;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .fondo ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #eaeaea;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .fondo ul.show {
+        display: flex;
+    }
+
+    .fondo ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .fondo ul li a {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    h1 {
+        margin-top: 120px;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .tabla {
+        margin-top: 20px;
+    }
+
+    table {
+        width: 90%;
+        margin-left: 5%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .styled-link {
+        margin-left: 5%;
+        width: 90%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2em;
+        margin-left: 5%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+}
+
+/* ... (resto de los estilos sin cambios) ... */

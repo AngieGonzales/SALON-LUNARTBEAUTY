@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='etil.css') }}">
+    <title>Editar Cita</title>
+</head>
+<body>
+    <header>
+        <h2>LunArt Beauty</h2>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <nav class="fondo">
+            <ul id="nav-menu">
+                <li><a href="{{ url_for('categoria.index_cliente') }}">CATALOGOS</a></li>
+                <li><a href="{{ url_for('contact.enviar_contacto') }}">CONTACTO</a></li>
+                <li><a href="{{ url_for('servicio.index') }}">SERVICIOS</a></li>
+                <li><a href="{{ url_for('cita.index_user') }}">CITAS</a></li>
+                <li><a href="{{ url_for('menu.ruta_perfil') }}"><label class="letra" for="user1"><img class="icon" src="static/img/user.svg" alt=""></label></a></li>
+            </ul>
+        </nav>    
+    </header>
+
+    <h1>EDITAR CITAS</h1>
+
+    <form action="{{ url_for('cita.edit', idcita=cita.idcita) }}" method="POST">
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" value="{{ cita.fecha }}" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" name="hora" value="{{ cita.hora }}" required>
+        </div>
+
+        <div class="form-group">
+        <label for="cliente">Nombre Cliente </label>
+        <input type="text" id="cliente" name="cliente" value="{{ cita.cliente }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="servicio">Servicio</label>
+            <select id="servicio" name="servicio" required>
+                {% for serv in servicios %}
+                    <option value="{{ serv.id }}" {% if serv.id == cita.servicio_id %}selected{% endif %}>
+                        {{ serv.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="estilista">Estilista</label>
+            <select id="estilista" name="estilista" required>
+                {% for est in estilistas %}
+                    <option value="{{ est.id }}" {% if est.id == cita.estilista_id %}selected{% endif %}>
+                        {{ est.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <button type="submit">ACTUALIZAR</button>
+        </div>
+    </form>
+    
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

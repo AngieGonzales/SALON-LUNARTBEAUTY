@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    <div class="content-wrapper">
+        <h1>BIENVENIDOS A LUNART BEAUTY </h1>
+
+        <div class="container mt-5"></div>
+            <div class="login col-md-6 offset-md-3">
+                <h2>LOGIN</h2>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}             
+                        {% for category, message in messages %}
+                            <div class="flash-message alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+                <form method="post">
+                    <div class="form-group">
+                        <label class="letra" for="user1"><img class="icon" src="static/img/user.svg" alt=""></label>
+                        <input type="email" id="correo" name="correo" placeholder="Correo" required><br><br>
+                    </div>
+
+                    <div  class="form-group">
+                        <label class="letra" for="password"><img class="icon" src="static/img/Contraseña.svg" alt=""></label>
+                        <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required><br><br>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                    <a href="/registro" class="register-link">Registrarse</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

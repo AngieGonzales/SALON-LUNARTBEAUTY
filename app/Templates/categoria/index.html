@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='categoria.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Botón de menú para móviles -->
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="profile">
+                <h3>LunArt Beauty</h3>
+                <div class="form-group">
+                    <img class="img-1" src="{{ url_for('static', filename='img/estilistaa.png') }}" alt="usuario">
+                </div>
+            </div>
+            <div class="campos">
+            <ul>
+                <li>
+                    <a href="{{ url_for('estilistas.index') }}">
+                        <img class="icon" src="{{ url_for('static', filename='img/tijeras.png') }}" alt="Inicio">
+                        ESTILISTAS
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('categoria.index') }}">
+                        <img class="icon" src="{{ url_for('static', filename='img/orden.png') }}" alt="Inicio">
+                        CATEGORIAS
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('producto.indexproductos') }}">
+                        <img class="icon" src="{{ url_for('static', filename='img/campana.png') }}" alt="Inicio">
+                        PRODUCTOS
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('cita.index') }}">
+                        <img class="icon" src="{{ url_for('static', filename='img/calendario.png') }}" alt="Inicio">
+                        CITAS
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('servicio.index_admin') }}">
+                        <img class="icon" src="{{ url_for('static', filename='img/servicio.png') }}" alt="Inicio">
+                        SERVICIOS
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('usuario.lista_usuarios') }}">
+                        <img class="icon" src="{{ url_for('static', filename='img/personas.png') }}" alt="Inicio">
+                        CLIENTES
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+
+    <div class="tabla">
+        <h1> CATEGORIAS </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>                
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categoria in data %}
+                <tr>
+                    <td>{{ categoria.idCategoria }}</td>
+                    <td>{{ categoria.nombre }}</td>
+                    <td>{{ categoria.descripcion }}</td>               
+                    <td>
+                        <img src="{{ url_for('static', filename='uploads/' ~ categoria.imagen) }}" alt="{{ categoria.nombre }}" width="100">
+                    </td>
+                    <td>
+                        <a class="btn-edit" href="{{ url_for('categoria.edit', id=categoria.idCategoria) }}">EDITAR</a> 
+                        <a class="btn-delete" href="{{ url_for('categoria.delete', id=categoria.idCategoria) }}">ELIMINAR</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Buttons Container (positioned below the table) -->
+        <div class="button-container">
+            
+            <a href="{{ url_for('categoria.add') }}" class="styled-link">AGREGAR</a>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

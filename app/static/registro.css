@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap');
+body {
+    font-family: 'Alex+Brush&display';
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background: url('https://example.com/your-background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+/* Estilos generales para todos los mensajes flash */
+.flash-message {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    font-size: 8px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f3bfd1;
+}
+.header {
+    background: #cccccc;
+    color: #050505;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    font-family: 'Arizonia';
+    color: #000000; /* Color del texto de la marca */
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 6%;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: rgba(250, 247, 247, 0.167);
+    padding: 30px;
+    border-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(174, 22, 22, 0.231);
+    transition: transform 0.3s;
+}
+
+form:hover {
+    transform: scale(1.02);
+}
+
+form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #0c0c0c;
+    font-size: 1.1rem;
+}
+
+form input[type="text"],
+form input[type="email"], /* Añadido para el campo de correo */
+form input[type="password"], /* Añadido para el campo de contraseña */
+form input[type="date"],
+form input[type="time"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus, /* Añadido para el campo de correo */
+form input[type="password"]:focus, /* Añadido para el campo de contraseña */
+form input[type="date"]:focus,
+form input[type="time"]:focus,
+form select:focus {
+    border-color: #d46e9a;
+    outline: none;
+}
+
+form button[type="submit"] {
+    background: linear-gradient(to right, #d46e9a, #0a0a0a); /* Gradiente de fondo */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    display: block; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #de6db7;
+    transform: scale(1.05);
+}
+
+/* Tabla */

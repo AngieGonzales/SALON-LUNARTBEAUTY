@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="{{ url_for('static', filename='registro.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h2>LunArt Beauty</h2>
+            </div>
+        </div>
+    </header>
+
+    <div class="registro">
+        <div class="registro-titulo">
+            <h1>REGISTRO DE USUARIOS</h1>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}             
+                    {% for category, message in messages %}
+                        <div class="flash-message alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="registro-formulario">
+            <form method="post" action="{{ url_for('usuario.registro')}}" id="registroForm">
+                <div class="registro-txt">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Solo admite letras" required><br><br>
+                </div>
+
+                <div class="registro-txt">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" placeholder="Solo admite letras" required><br><br>
+                </div>
+
+                <div class="registro-txt">
+                    <label for="celular">Celular:</label>
+                    <input type="text" id="celular" name="celular" placeholder="10 dígitos" required><br><br>
+                </div>
+
+                <div class="registro-txt">
+                    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="dia/mes/año" required>
+                </div>
+
+                <div class="registro-txt">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" placeholder="debe tener @" required><br><br>
+                </div>
+
+                <div class="registro-txt">
+                    <label for="rol">Rol:</label>
+                    <select id="rol" name="rol" required onchange="toggleAdminKey()">
+                        <option value="" disabled selected>Selecciona un rol</option>
+                        <option value="Usuario">Usuario</option>
+                        <option value="Administrador">Administrador</option>
+                    </select><br><br>
+                </div>
+
+                <div class="registro-txt" id="password-container">
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Mínimo 4 caracteres"><br><br>
+                </div>
+
+                <div id="admin-key-container" style="display: none;">
+                    <div class="registro-txt">
+                        <label for="admin_key">Clave de Administrador:</label>
+                        <input type="password" id="admin_key" name="admin_key"><br><br>
+                    </div>
+                </div>
+
+                <button type="submit">REGISTRAR</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+    function toggleAdminKey() {
+        var rol = document.getElementById('rol').value;
+        var adminKeyContainer = document.getElementById('admin-key-container');
+        var passwordContainer = document.getElementById('password-container');
+        var contraseñaInput = document.getElementById('contraseña');
+        var adminKeyInput = document.getElementById('admin_key');
+        
+        if (rol === 'Administrador') {
+            adminKeyContainer.style.display = 'block';
+            passwordContainer.style.display = 'none';
+            contraseñaInput.removeAttribute('required');
+            adminKeyInput.setAttribute('required', '');
+        } else {
+            adminKeyContainer.style.display = 'none';
+            passwordContainer.style.display = 'block';
+            contraseñaInput.setAttribute('required', '');
+            adminKeyInput.removeAttribute('required');
+        }
+    }
+
+    document.getElementById('registroForm').addEventListener('submit', function(event) {
+        var rol = document.getElementById('rol').value;
+        var contraseña = document.getElementById('contraseña').value;
+        var adminKey = document.getElementById('admin_key').value;
+
+        if (rol === 'Administrador' && !adminKey) {
+            event.preventDefault();
+            alert('Por favor, ingrese la clave de administrador.');
+        } else if (rol === 'Usuario' && (!contraseña || contraseña.length <= 4)) {
+            event.preventDefault();
+            alert('La contraseña debe contener más de 4 caracteres.');
+        }
+    });
+    </script>
+</body>
+</html>
+

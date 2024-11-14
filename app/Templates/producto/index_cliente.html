@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+    <script src="https://kit.fontawesome.com/f98b44af14.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h2>LunArt Beauty</h2>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+        <nav class="fondo" id="menu">
+            <ul>
+                <li><a href="{{ url_for('menu.ruta_inicio') }}">INICIO</a></li>
+                <li><a href="#">SERVICIOS</a></li>
+                <li><a href="#">CATEGORÍAS</a></li>
+                <li>
+                    <a href="{{ url_for('carrito.ruta_carrito') }}" class="cart-icon">
+                        <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mensajes Flash -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Contenido principal -->
+    <div class="header-content container">
+        <div class="header-txt">
+            <h1>Productos</h1>
+        </div>
+    </div>
+
+    <section class="menu-pl container">
+        <div class="general-content">
+            {% for producto in data %}
+            <div class="general-txt">
+                <img class="img-1" src="{{ url_for('static', filename='uploads/' ~ producto.imagen) }}" alt="{{ producto.nombre }}" width="100">
+                <h3>{{ producto.nombre }}</h3>
+                <div class="prices">
+                    <samp>Precio: {{ "{:,.2f}".format(producto.precio).replace(',', 'X').replace('.', ',').replace('X', '.') }}</samp>
+                </div>
+                <div class="link-container">
+                    <a class="styled-link" onclick="agregarAlCarrito('{{ producto.nombre }}', '{{ producto.precio }}')">Agregar al Carrito</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuToggle = document.getElementById('menuToggle');
+            var menu = document.getElementById('menu');
+
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('show');
+            });
+        });
+
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+
+        function agregarAlCarrito(nombre, precio, cantidad = 1) {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            const productoExistente = carrito.find(item => item.nombre === nombre);
+            if (productoExistente) {
+                productoExistente.cantidad += cantidad; // Incrementar la cantidad
+            } else {
+                carrito.push({ nombre: nombre, precio: precio, cantidad: cantidad });
+            }
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${nombre} ha sido agregado al carrito`);
+        }
+    </script>
+</body>
+</html>

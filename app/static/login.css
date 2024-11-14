@@ -1,0 +1,182 @@
+/* Fondo del cuerpo con un degradado suave en tonos rosados */
+body {
+    background-image: url("/static/img/salon.jpg");
+    font-family: 'Times New Roman', Times, serif;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+    width: 89%;
+    margin: 0;
+    position:fixed;
+    display: flex;
+    justify-content: right ;
+    align-items: center;
+    
+}
+/* Estilos generales para todos los mensajes flash */
+.flash-message {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    font-size: 8px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f3bfd1;
+}
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    width: 400px;
+}
+
+.form-group input {
+    width: 600%;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.img-1 {
+    
+    height: 20px;
+}
+.login {
+    background-color: rgba(255, 255, 255, 0.763);
+    padding: 40px  50px 60px 30px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.564);
+}
+.content-wrapper h1{
+    font-family: 'Playfair Display', serif; /* Cambia a una fuente más elegante */
+    font-size: 3em; /* Aumenta el tamaño de la fuente */
+    color: #FFFFFF; /* Mantén el color blanco para el contraste */
+    text-align: center; /* Centra el texto */
+    text-shadow: 3px 3px 8px rgba(177, 55, 126, 0.7); /* Aumenta la sombra del texto para mejor legibilidad */
+    letter-spacing: 2px; /* Espaciado entre letras para una apariencia más refinada */
+    font-weight: 800; /* Usa un peso de fuente más grueso para darle fuerza al texto */
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    padding-left: 50px;
+    position: absolute;
+    top: 43%; /* Ajusta la posición vertical */
+    left: 30%;
+    transform: translateX(-50%); /* Centra el texto horizontalmente */
+}
+/* Encabezado del formulario */
+h2 {
+    text-align: center;
+    color: #000000;
+    font-size: 2em; 
+}
+/* Etiquetas de los campos */
+.form-group label {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    color: #000000;
+    
+}
+/* Campos de entrada de texto */
+.form-control {
+  
+    border: 1px solid #0f0f0f;
+    padding: 10px 20px;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #f8a5c2;
+    box-shadow: 0 0 8px rgba(248, 165, 194, 0.5);
+}
+
+/* Botón de enviar */
+.btn-primary {
+    font-family: 'Times New Roman', Times, serif;
+    background: #D4A5A5; /* Rosa Palo */
+    color: #ffffff;    
+    border: none;
+    display: block; 
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0px auto;
+    font-size: 1.6rem;
+    margin-top: 10%;
+    transition: background-color 0.3s;
+}
+
+
+.btn-primary:hover {
+    background-color: #f8a5c2;
+    border-color: #f8a5c2;
+}
+
+/* Mensajes de alerta */
+.flash-message {
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #e5b3cb;
+    color: #fff;
+}
+
+.alert-danger {
+    background-color: #f1d5e8;
+    color: #101010;
+}
+
+.alert-warning {
+    background-color: #fdcb6e;
+    color: #000000;
+}
+
+.alert-info {
+    background-color: #74b9ff;
+    color: #fff;
+}
+/* Estilo para el enlace de registrarse */
+.register-link {
+    display: block; /* Hace que el enlace se comporte como un bloque */
+    text-align: center; /* Centra el texto */
+    margin-top: 15px; /* Espaciado hacia arriba */
+    font-size: 1.6rem; /* Ajusta el tamaño de la fuente */
+    color: #000000; /* Color rosa palo para que combine con el botón */
+    text-decoration: none; /* Quita el subrayado */
+    font-weight: bold;
+}
+
+.register-link:hover {
+    color: #f8a5c2; /* Cambia el color cuando el usuario pasa el ratón por encima */
+    text-decoration: underline; /* Añade subrayado en el hover */
+}
+
+@media (max-width: 440px) {
+    .container {
+        margin-top: 10px;
+        background-color: #fdcb6e;
+    }
+
+}
