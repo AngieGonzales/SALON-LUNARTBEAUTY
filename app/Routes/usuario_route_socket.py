@@ -17,9 +17,8 @@ def get_users():
 
 @bp.route('/add', methods=['POST'])
 def create_user():
-    print("entra a create")
     data = request.json
-    new_user = Usuario(nombre=data['nombre'], apellido=data['apellido'],  celular =data['celular'],  correo =data['correo '],  fecha_nacimiento =data[' fecha_nacimiento'], rol =data['rol'],  password_hash=data['password_hash ']  )
+    new_user = Usuario(nombre=data['nombre'], apellido=data['apellido'],  celular =data['celular'],  correo =data['correo'],  fecha_nacimiento =data['fecha_nacimiento'], rol =data['rol'],  password_hash=data['password_hash']  )
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
@@ -36,7 +35,7 @@ def update_user(id):
         usuario.correo = data['correo']
         usuario.fecha_nacimiento = data['fecha_nacimiento']
         usuario.rol = data['rol']
-        usuario.ppassword_hash = data['password_hashr']
+        usuario.password_hash = data['password_hash']
         db.session.commit()
         # Notifica a todos los clientes conectados sobre la actualización
         return jsonify({'message': 'User updated successfully'})
