@@ -8,7 +8,7 @@ bp = Blueprint('usuario', __name__)
 
 
 
-@bp.route('/lista_usuarios')  
+@bp.route('/usuario/lista_usuarios')  
 def lista_usuarios():
     data = Usuario.query.all()
     return render_template('usuarios/lista_usuarios.html', data=data)
