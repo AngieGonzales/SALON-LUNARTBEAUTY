@@ -5,9 +5,7 @@ from io import BytesIO
 import base64
 import json
 
-
 bp = Blueprint('usuariosocket', __name__, url_prefix='/Usuariosockets')
-
 
 @bp.route('/index', methods=['GET'])
 def get_users():
