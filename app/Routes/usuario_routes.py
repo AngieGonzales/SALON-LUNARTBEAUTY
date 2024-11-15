@@ -51,12 +51,6 @@ def registro():
         if '@' not in correo:
             flash('EL CORREO DEBE CONTENER UN @.')
             return redirect(url_for('usuario.registro'))
-        
-        try:
-          fecha_nacimiento = date.fromisoformat(fecha_nacimiento)
-        except ValueError:
-            flash('LA FECHA DEBE ESTAR EN FORMATO DD/MM/AAAA Y SEPARAD POR /')
-            return redirect(url_for('usuario.registro'))
 
         if not nombre or not apellido or not celular or not correo or not contraseña or not rol:
             flash('NO PUEDEN HABER CAMPOS VACIOS.')

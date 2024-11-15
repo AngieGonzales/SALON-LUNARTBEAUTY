@@ -33,7 +33,7 @@ def create_app():
     scheduler.start()
 
 
-    from app.Routes import servicio_routes, menu_routes, estilista_routes, carrito_routes, usuario_routes,  producto_routes, categoria_routes, contacto_routes, cita_routes, usuario_route_socket, producto_routes_socket, servicio_routes_socket, estilista_routes_socket
+    from app.Routes import servicio_routes, menu_routes, estilista_routes, carrito_routes, usuario_routes,  producto_routes, categoria_routes, contacto_routes, cita_routes, usuario_route_socket, producto_routes_socket, servicio_routes_socket, estilista_routes_socket, cita_routes_socket
 
     app.register_blueprint(servicio_routes.bp)
     app.register_blueprint(menu_routes.bp)
@@ -48,6 +48,8 @@ def create_app():
     app.register_blueprint(producto_routes_socket.bp)
     app.register_blueprint(servicio_routes_socket.bp)
     app.register_blueprint(estilista_routes_socket.bp)
+    app.register_blueprint(cita_routes_socket.bp)
+
 
 
 
