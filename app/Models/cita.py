@@ -21,6 +21,21 @@ class Cita(db.Model):
         self.estilista_id = estilista_id
         self.servicio = servicio
         self.estilista = estilista
+        
+def get_id(self):
+        return str(self.id)
+    
+    
+def to_dict(self):
+        return{
+            "idcita": self.idcita,
+            "fecha": self.fecha,
+            "hora": self.hora,
+            "cliente": self.cliente,
+            "servicio_id ": self. servicio_id ,
+            "estilista_id": self.estilista_id,
+
+        }
 
     
     

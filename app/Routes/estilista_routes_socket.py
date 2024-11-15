@@ -47,9 +47,9 @@ def update_estilista(id):
 
 
 @bp.route('/delete/estilista/<int:id>', methods=['DELETE'])
-def delete_estilista(idEstilista):
+def delete_estilista(id):
     print("entra de delete")
-    estilista = Estilista.query.get(idEstilista)
+    estilista = Estilista.query.get(id)
     if estilista:
         db.session.delete(estilista)
         db.session.commit()
