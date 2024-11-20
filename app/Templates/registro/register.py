@@ -6,20 +6,12 @@ def main (page: ft.Page):
     page.title = "Registro de Usuarios"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.padding = 0
+    page.bgcolor = ft.colors.WHITE
 
     encabezado = ft.Container(
-        content=ft.Text(
-            "LunartBeauty",
-            size=30,
-            weight="bold",
-            color=ft.colors.BLACK,
-            font_family= "Arizonia"
+        content=ft.Text("LunartBeauty",size=30,weight="bold",color=ft.colors.BLACK,font_family= "Arizonia"
         ),
-        padding=10,
-        bgcolor=ft.colors.GREY_200,
-        alignment=ft.alignment.top_left,
-        border_radius=ft.border_radius.all(10),
-        width= None,
+        padding=10,bgcolor=ft.colors.GREY_300,alignment=ft.alignment.top_left, border_radius=ft.border_radius.all(10),width= None,
     )
 
     def registrar_usuario():
