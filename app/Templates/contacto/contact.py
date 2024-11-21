@@ -98,18 +98,19 @@ def main(page: ft.Page):
                     border_radius=10,
                     width=700
                 ),
-                ft.ElevatedButton(text="ENVIAR COMENTARIO", on_click=lambda e: None, color=ft.colors.PINK),
             ],
             alignment=ft.MainAxisAlignment.START,  # Alinea los controles hacia el inicio
         ),
         padding=20,  # Aplica el padding al contenedor completo
     )
 
+    boton_registrar = ft.ElevatedButton(text="ENVIAR", color= ft.colors.PINK_500, bgcolor=ft.colors.GREY_300)
+
     page.add(
         ft.Column(
-            controls=[encabezado, nav_menu, contacto_info, contacto_form],
+            controls=[encabezado, nav_menu, contacto_info, contacto_form, boton_registrar],
             alignment=ft.MainAxisAlignment.CENTER,  # Alineación vertical de los elementos dentro de la página
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Alineación horizontal de los elementos dentro de la página
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         )
     )
 

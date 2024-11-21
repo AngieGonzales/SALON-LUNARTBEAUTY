@@ -3,29 +3,24 @@ from flet import Page
 
 
 def main (page: ft.Page):
-    page.title = "Registro de Usuarios"
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    page.padding = 0
+    page.title = "LunArt Beauty - Registro Usuarios"
     page.bgcolor = ft.colors.WHITE
+    page.scroll = ft.ScrollMode.ALWAYS
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
     encabezado = ft.Container(
-        content=ft.Text("LunartBeauty",size=30,weight="bold",color=ft.colors.BLACK,font_family= "Arizonia"
+        content=ft.Row(
+            controls=[
+                ft.Text("LunArtBeauty", size=30, weight="bold", color=ft.colors.BLACK, font_family="Arizonia"),
+            ],
+            alignment=ft.MainAxisAlignment.START,
         ),
-        padding=10,bgcolor=ft.colors.GREY_300,alignment=ft.alignment.top_left, border_radius=ft.border_radius.all(10),width= None,
+        bgcolor=ft.colors.GREY_300,  # Fondo gris para el encabezado
+        border_radius=ft.border_radius.all(10),  # Radio de borde para el contenedor
+        padding=10,  # Espaciado dentro del contenedor
     )
 
-    def registrar_usuario():
-        usuario = {
-                "nombre": campo_nombre.value,
-                "apellido": campo_apellido.value,
-                "celular": campo_celular.value,
-                "correo": campo_correo.value,
-                "password_hash": campo_password.value,
-                "fecha_nacimiento": campo_fecha_nacimiento.value,
-                "rol": campo_rol.value
-            }
-
-
+    
     campo_nombre = ft.TextField(label="Nombre", width=500)
     campo_apellido = ft.TextField(label="Apellido", width=500,)
     campo_celular = ft.TextField(label="Celular", width=500,)
@@ -40,7 +35,7 @@ def main (page: ft.Page):
         ],
     )
 
-    boton_registrar = ft.ElevatedButton(text="REGISTRAR", color= ft.colors.PINK_500, bgcolor=ft.colors.GREY_300, on_click=registrar_usuario)
+    boton_registrar = ft.ElevatedButton(text="REGISTRAR", color= ft.colors.PINK_500, bgcolor=ft.colors.GREY_300)
 
     page.add(
         ft.Column(
