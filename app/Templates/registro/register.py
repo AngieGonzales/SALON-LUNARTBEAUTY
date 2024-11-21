@@ -20,7 +20,6 @@ def main (page: ft.Page):
         padding=10,  # Espaciado dentro del contenedor
     )
 
-    
     campo_nombre = ft.TextField(label="Nombre", width=500)
     campo_apellido = ft.TextField(label="Apellido", width=500,)
     campo_celular = ft.TextField(label="Celular", width=500,)
@@ -35,7 +34,7 @@ def main (page: ft.Page):
         ],
     )
 
-    boton_registrar = ft.ElevatedButton(text="REGISTRAR", color= ft.colors.PINK_500, bgcolor=ft.colors.GREY_300)
+    boton_registrar = ft.ElevatedButton(text="REGISTRAR", color= ft.colors.PINK, bgcolor=ft.colors.GREY_300)
 
     page.add(
         ft.Column(
