@@ -1,7 +1,7 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.title = "LunArt Beauty - Contacto"
+    page.title = "LunArtBeauty - Contacto"
     page.bgcolor = ft.colors.WHITE
     page.scroll = ft.ScrollMode.ALWAYS
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
