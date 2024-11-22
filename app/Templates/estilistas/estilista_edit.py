@@ -43,21 +43,18 @@ def main(page: ft.Page):
     campo_nombre = ft.TextField(
         label="Nombre", 
         width=500, 
-        value="Juan Pérez", 
         border_radius=ft.border_radius.all(10), 
         bgcolor=ft.colors.GREY_100
     )
     campo_apellido = ft.TextField(
         label="Apellido", 
         width=500, 
-        value="Pérez", 
         border_radius=ft.border_radius.all(10), 
         bgcolor=ft.colors.GREY_100
     )
     campo_telefono = ft.TextField(
         label="Teléfono", 
         width=500, 
-        value="123456789", 
         border_radius=ft.border_radius.all(10), 
         bgcolor=ft.colors.GREY_100
     )
