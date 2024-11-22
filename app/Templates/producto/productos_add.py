@@ -51,7 +51,7 @@ def main(page: ft.Page):
         content=ft.Column(
             controls=[
                 ft.Container(
-                    content=ft.Text("AGREGAR PRODUCTOS", size=28, weight="bold"),
+                    content=ft.Text("AGREGAR PRODUCTOS", size=28, weight="bold", font_family="Times New Roman"),
                     alignment=ft.alignment.center,  # Centra el título
                     padding=ft.padding.symmetric(vertical=20),
                 ),

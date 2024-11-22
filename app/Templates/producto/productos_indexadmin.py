@@ -47,7 +47,7 @@ def main(page: ft.Page):
     )
 
     content_header = ft.Container(
-        content=ft.Text("LISTA DE SERVICIOS", size=24, weight="bold"),
+        content=ft.Text("LISTA DE SERVICIOS", size=24, weight="bold", font_family="Times New Roman"),
         padding=20,
         alignment=ft.alignment.center,
     )

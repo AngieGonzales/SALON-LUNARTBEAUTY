@@ -55,6 +55,7 @@ def main(page: ft.Page):
                             size=32,
                             weight="bold",
                             color=ft.colors.PINK,
+                            font_family="Times New Roman",
                         ),
                         ft.Text(
                             '"Descubre lo mejor de nuestros servicios y productos."',

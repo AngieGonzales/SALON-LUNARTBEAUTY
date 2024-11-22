@@ -64,7 +64,7 @@ def main(page: ft.Page):
     content = ft.Container(
         content=ft.Column(
             [
-                ft.Text("EDITAR PRODUCTOS", size=24, weight="bold"),
+                ft.Text("EDITAR PRODUCTOS", size=24, weight="bold", font_family="Times New Roman"),
                 ft.ElevatedButton("Seleccionar Imagen", on_click=upload_file, color=ft.colors.PINK),
                 selected_image,
                 ft.TextField(label="Nombre", width=500),
