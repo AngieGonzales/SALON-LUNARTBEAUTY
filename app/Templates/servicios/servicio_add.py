@@ -47,47 +47,47 @@ def main(page: ft.Page):
     )
 
     # Content: Form to Add Services
-    content = ft.Column(
+    content = ft.Container(
+    content=ft.Column(
         controls=[
             ft.Container(
                 content=ft.Text("AGREGAR SERVICIOS", size=28, weight="bold"),
                 alignment=ft.alignment.center,
                 padding=20
             ),
-            # URL field with label aligned left
+            # URL field with label aligned center
             ft.Row(
                 controls=[
-                    ft.Text("URL:", weight="bold", width=100),  # Label on the left
+                    ft.Text("URL:", weight="bold", width=100, text_align="right"),  # Label
                     ft.TextField(
                         label="URL de la imagen",
                         on_change=lambda e: page.add(ft.Text(f"URL ingresada: {e.control.value}")),
-                        width=500,
+                        width=400,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.START,
+                alignment=ft.MainAxisAlignment.CENTER,  # Centra toda la fila
                 spacing=10
             ),
             ft.Row(
                 controls=[
-                    ft.Text("Nombre:", weight="bold", width=100),  # Label on the left
+                    ft.Text("Nombre:", weight="bold", width=100, text_align="right"),  # Label
                     ft.TextField(
                         label="Nombre Servicio",
-                        width=500,        
+                        width=400,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.START,
-                spacing=10
+                alignment=ft.MainAxisAlignment.CENTER,  # Centra toda la fila
+                spacing=20
             ),
-            # Descripción field with label aligned left
             ft.Row(
                 controls=[
-                    ft.Text("Descripción:", weight="bold", width=100),  # Label on the left
+                    ft.Text("Descripción:", weight="bold", width=100, text_align="right"),  # Label
                     ft.TextField(
                         label="Descripción Servicio",
-                        width=500,
+                        width=400,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.START,
+                alignment=ft.MainAxisAlignment.CENTER,  # Centra toda la fila
                 spacing=10
             ),
             ft.ElevatedButton(
@@ -100,7 +100,11 @@ def main(page: ft.Page):
         spacing=20,
         alignment=ft.MainAxisAlignment.CENTER,  # Centra los controles dentro de la columna
         horizontal_alignment=ft.CrossAxisAlignment.CENTER
-    )
+    ),
+    expand=True,  # Ocupa todo el espacio restante
+    alignment=ft.alignment.center  # Centra el formulario dentro del contenedor
+)
+
 
     # Main Layout
     page.add(
@@ -109,6 +113,9 @@ def main(page: ft.Page):
                 sidebar,
                 content,
             ],
+            expand=True,  # Hace que el Row ocupe todo el espacio disponible
+            alignment=ft.MainAxisAlignment.CENTER,  # Centra los elementos dentro del Row
+            vertical_alignment=ft.CrossAxisAlignment.CENTER  # Asegura que los elementos estén centrados verticalmente
         )
     )
 
