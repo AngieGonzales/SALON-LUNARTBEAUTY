@@ -7,7 +7,6 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.START
 
 
-    # Sidebar
     sidebar = ft.Container(
         content=ft.Column(
             controls=[
@@ -70,7 +69,7 @@ def main(page: ft.Page):
         content=ft.ElevatedButton(
             text="AGREGAR", on_click=lambda e: None, icon=ft.icons.ADD, color=ft.colors.PINK
         ),
-        alignment=ft.alignment.center_right,
+        alignment=ft.alignment.center,
         padding=20,
     )
 

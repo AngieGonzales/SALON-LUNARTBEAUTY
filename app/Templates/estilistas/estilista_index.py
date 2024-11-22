@@ -10,7 +10,7 @@ def main(page: ft.Page):
     encabezado = ft.Container(
         content=ft.Row(
             controls=[
-                ft.Text("LunArt Beauty", size=30, weight="bold", color=ft.colors.BLACK,  font_family="Playfair Display" ),
+                ft.Text("LunArt Beauty", size=30, weight="bold", color=ft.colors.BLACK,  font_family="Arizonia" ),
             ],
             alignment=ft.MainAxisAlignment.START,
         ),
@@ -36,7 +36,7 @@ def main(page: ft.Page):
     header_content = ft.Container(
         content=ft.Column(
             controls=[
-                ft.Text("Lista de Estilistas", size=24, weight="bold", text_align="center", font_family="Times New Roman"),
+                ft.Text("LISTA ESTILISTAS", size=24, weight="bold", text_align="center", font_family="Times New Roman"),
             ],
             alignment="center",
         ),

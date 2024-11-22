@@ -29,7 +29,7 @@ def main(page: ft.Page):
     # Título principal con un toque de elegancia
     titulo = ft.Container(
         content=ft.Text(
-            "EDITAR CITA",
+            "EDITAR ESTILISTA",
             size=24,
             weight="bold",
             color=ft.colors.GREY_900,
