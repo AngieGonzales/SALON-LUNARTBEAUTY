@@ -1,7 +1,7 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.title = "LunArt Beauty-Servicios"
+    page.title = "LunArt Beauty-Citas"
     page.bgcolor = ft.colors.WHITE
     page.scroll = ft.ScrollMode.ALWAYS
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -10,7 +10,7 @@ def main(page: ft.Page):
     encabezado = ft.Container(
         content=ft.Row(
             controls=[
-                ft.Text("LunArt Beauty", size=30, weight="bold", color=ft.colors.BLACK,  font_family="Playfair Display" ),
+                ft.Text("LunArt Beauty", size=30, weight="bold", color=ft.colors.BLACK,  font_family="Arizonia" ),
             ],
             alignment=ft.MainAxisAlignment.START,
         ),

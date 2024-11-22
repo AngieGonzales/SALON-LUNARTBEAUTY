@@ -43,10 +43,10 @@ def main(page: ft.Page):
     # Contenido principal
     content = ft.Column(
         controls=[
-            ft.Text("Bienvenido a tu Perfil", size=24, weight=ft.FontWeight.BOLD),
+            ft.Text("Bienvenido a tu Perfil", size=24, font_family="Times New Roman", weight=ft.FontWeight.BOLD),
             ft.Text("Aquí puedes encontrar información y opciones para gestionar tu perfil."),
             # Nueva imagen añadida aquí
-            ft.Image(src="app/Imagenes/logo.png", width=1000, height=300, fit=ft.ImageFit.CONTAIN),
+            ft.Image(src="app/Imagenes/cliente.png", width=1000, height=590, fit=ft.ImageFit.CONTAIN),
         ],
         expand=True,
         alignment=ft.MainAxisAlignment.START,

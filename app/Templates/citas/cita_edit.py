@@ -16,7 +16,7 @@ def main(page: ft.Page):
                     size=30,
                     weight="bold",
                     color=ft.colors.BLACK,
-                    font_family="Lora",  # Elegante tipo de letra
+                    font_family="Arizonia",  # Elegante tipo de letra
                 ),
             ],
             alignment=ft.MainAxisAlignment.START,
