@@ -32,7 +32,7 @@ def main (page: ft.Page):
             ft.dropdown.Option("Usuario"),
             ft.dropdown.Option("Administrador"),
         ],
-    )
+    )                              
 
     boton_registrar = ft.ElevatedButton(text="REGISTRAR", color= ft.colors.PINK, bgcolor=ft.colors.GREY_300)
 
