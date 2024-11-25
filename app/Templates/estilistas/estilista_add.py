@@ -2,7 +2,7 @@ import flet as ft
 from flet import Page
 
 def main(page: ft.Page):
-    page.title = "LunArt Beauty - Agendar Cita"
+    page.title = "LunArt Beauty - Agregar Estilistas"
     page.bgcolor = ft.colors.WHITE
     page.scroll = ft.ScrollMode.ALWAYS
     page.vertical_alignment = ft.MainAxisAlignment.START
@@ -16,7 +16,7 @@ def main(page: ft.Page):
                     size=30,
                     weight="bold",
                     color=ft.colors.BLACK,
-                    font_family="Lora",  # Elegante tipo de letra
+                    font_family="Arizonia",  # Elegante tipo de letra
                 ),
             ],
             alignment=ft.MainAxisAlignment.START,
@@ -30,7 +30,7 @@ def main(page: ft.Page):
     # Título principal con un toque de elegancia
     titulo = ft.Container(
         content=ft.Text(
-            "AGENDAR CITA",
+            "AGREGAR ESTILISTAS",
             size=24,
             weight="bold",
             color=ft.colors.GREY_900,
@@ -48,9 +48,10 @@ def main(page: ft.Page):
 
     # Botón de agendar con bordes redondeados y cambio de color en hover
     boton_agendar = ft.ElevatedButton(
-        text="AGENDAR",
+        text="AGREGAR",
         color=ft.colors.PINK,
         bgcolor=ft.colors.GREY_300,
+        icon=ft.icons.ADD,
         on_hover=lambda e: e.control.update(bgcolor=ft.colors.PINK_500)  # Cambia el color en hover
     )
 

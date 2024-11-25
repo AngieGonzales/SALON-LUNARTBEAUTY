@@ -1,83 +1,52 @@
 import flet as ft
 
 def main(page: ft.Page):
-    # Configuración de la página
-    page.title = "Perfil de Usuario - LunArt Beauty"
-    page.theme_mode = ft.ThemeMode.LIGHT
-    page.padding = 0
-    page.bgcolor = "white"
+    page.title = "LunArtBeauty - Srevicios Administrador"
+    page.bgcolor = ft.colors.WHITE
+    page.scroll = ft.ScrollMode.ALWAYS
+    page.vertical_alignment = ft.MainAxisAlignment.START
     
     # Sidebar contenido
     sidebar = ft.Container(
         content=ft.Column(
             controls=[
+                ft.Text("LunArtBeauty", size=36, weight="bold", color=ft.colors.BLACK, font_family="Arizonia"),
                 ft.Container(
-                    content=ft.Text("LunArt Beauty", size=20, weight=ft.FontWeight.BOLD),
-                    alignment=ft.alignment.center,
+                    content=ft.Image(
+                        src="app/Imagenes/maquillaje.png",  # Ruta de la imagen
+                        width=100,
+                        height=100,
+                        fit=ft.ImageFit.COVER,
+                    ),
+                    alignment=ft.alignment.center,  # Centra la imagen dentro del contenedor
                 ),
                 ft.ListView(
+                    expand=True,
                     controls=[
-                        ft.ListTile(
-                            leading=ft.Image(src="/static/img/casa.png", width=30, height=30),
-                            title=ft.Row(
-                                controls=[
-                                    ft.Image(src="/static/img/home_icon.png", width=20, height=20),
-                                    ft.Text("INICIO", expand=True),
-                                ],
-                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                            ),
-                            on_click=lambda e: page.go("/menu/ruta_inicio"),
-                        ),
-                        ft.ListTile(
-                            leading=ft.Image(src="/static/img/personas.png", width=30, height=30),
-                            title=ft.Row(
-                                controls=[
-                                    ft.Image(src="/static/img/update_profile.png", width=20, height=20),
-                                    ft.Text("ACTUALIZAR PERFIL", expand=True),
-                                ],
-                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                            ),
-                            on_click=lambda e: page.go("/usuario/lista_usuarios"),
-                        ),
-                        ft.ListTile(
-                            leading=ft.Image(src="/static/img/tijeras.png", width=30, height=30),
-                            title=ft.Row(
-                                controls=[
-                                    ft.Image(src="/static/img/stylists.png", width=20, height=20),
-                                    ft.Text("ESTILISTAS", expand=True),
-                                ],
-                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                            ),
-                            on_click=lambda e: page.go("/estilistas/index"),
-                        ),
-                        ft.ListTile(
-                            leading=ft.Image(src="/static/img/cerrar.png", width=30, height=30),
-                            title=ft.Row(
-                                controls=[
-                                    ft.Image(src="/static/img/logout.png", width=20, height=20),
-                                    ft.Text("CERRAR SESIÓN", expand=True),
-                                ],
-                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                            ),
-                            on_click=lambda e: page.go("/usuario/logout"),
-                        ),
-                    ]
-                )
+                        ft.Container(
+                            ft.TextButton("INICIO", icon=ft.icons.HOUSE, icon_color=ft.colors.GREY_800, style=ft.ButtonStyle(color=ft.colors.GREY_800)), padding=ft.padding.all(10)),
+                        ft.Container(
+                            ft.TextButton("ACTUALIZAR PERFIL", icon=ft.icons.UPDATE, icon_color=ft.colors.GREY_800, style=ft.ButtonStyle(color=ft.colors.GREY_800)), padding=ft.padding.all(10)),
+                        ft.Container(
+                            ft.TextButton("CERRAR SESION", icon=ft.icons.CLOSE, icon_color=ft.colors.GREY_800, style=ft.ButtonStyle(color=ft.colors.GREY_800)), padding=ft.padding.all(10)),
+                    ],
+                ),
             ],
-            expand=True,
+            spacing=50,
         ),
-        width=250,
-        bgcolor="#f0f0f0",
-        padding=10,
+        width=280,
+        height=680,
+        bgcolor=ft.colors.GREY_200,
+        padding=20,
     )
 
     # Contenido principal
     content = ft.Column(
         controls=[
-            ft.Text("Bienvenido a tu Perfil", size=24, weight=ft.FontWeight.BOLD),
+            ft.Text("Bienvenido a tu Perfil", size=24, font_family="Times New Roman", weight=ft.FontWeight.BOLD),
             ft.Text("Aquí puedes encontrar información y opciones para gestionar tu perfil."),
             # Nueva imagen añadida aquí
-            ft.Image(src="app/Imagenes/logo.png", width=1000, height=300, fit=ft.ImageFit.CONTAIN),
+            ft.Image(src="app/Imagenes/cliente.png", width=1000, height=590, fit=ft.ImageFit.CONTAIN),
         ],
         expand=True,
         alignment=ft.MainAxisAlignment.START,

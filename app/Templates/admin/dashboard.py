@@ -47,48 +47,55 @@ def main(page: ft.Page):
         padding=20,
     )
 
-    # Content: Form to Add Services
-    content = ft.Container(
+    # Admin Info Section
+    admin_info = ft.Container(
         content=ft.Column(
             controls=[
                 ft.Container(
-                    content=ft.Text("AGREGAR SERVICIOS", size=28, weight="bold"),
-                    alignment=ft.alignment.center,  # Centra el título
-                    padding=ft.padding.symmetric(vertical=20),
-                ),
-                ft.Row(
-                    controls=[
-                        ft.TextField(label="URL de la imagen", width=400),
-                    ],
-                    alignment=ft.MainAxisAlignment.CENTER,
-                ),
-                ft.Row(
-                    controls=[
-                        ft.TextField(label="Nombre Servicio", width=400),
-                    ],
-                    alignment=ft.MainAxisAlignment.CENTER,
-                ),
-                ft.Row(
-                    controls=[
-                        ft.TextField(label="Descripción Servicio", width=400),
-                    ],
-                    alignment=ft.MainAxisAlignment.CENTER,
+                    content=ft.Text(
+                        "ADMINISTRADOR - LUNART BEAUTY",
+                        size=24,
+                        weight="bold",
+                        color=ft.colors.PINK,
+                        font_family="Times New Roman"
+                    ),
+                    alignment=ft.alignment.center,
+                    padding=20,
                 ),
                 ft.Container(
-                    content=ft.ElevatedButton(
-                        text="AGREGAR",
-                        on_click=lambda e: print("Servicio agregado"),
-                        icon=ft.icons.ADD, color=ft.colors.PINK,
-                        bgcolor=ft.colors.GREY_300,
+                    content=ft.Text(
+                        "Bienvenidos",
+                        size=20,
+                        weight="bold",
+                        color=ft.colors.GREY_700,
                     ),
-                    alignment=ft.alignment.center,  # Centra el botón
-                    padding=ft.padding.symmetric(vertical=20),
+                    padding=ft.padding.symmetric(vertical=10),
+                    alignment=ft.alignment.center
+                ),
+                ft.Container(
+                    content=ft.Text(
+                        (
+                            "¡Nos alegra verte de nuevo en el panel de control de LunArt Beauty! Aquí podrás gestionar "
+                            "de manera eficiente todos los aspectos de tu salón de belleza. Desde la administración de "
+                            "productos y servicios hasta la gestión de citas y clientes, este panel te proporciona todas "
+                            "las herramientas necesarias para mantener el negocio en funcionamiento y ofrecer la mejor "
+                            "experiencia a tus clientes.\n\n"
+                            "No olvides revisar las últimas notificaciones y estar al tanto de las actualizaciones importantes. "
+                            "Si necesitas asistencia, no dudes en consultarnos en la sección de ayuda.\n\n"
+                            "¡Que tengas un excelente día de trabajo!"
+                        ),
+                        size=16,
+                        text_align="justify",
+                        color=ft.colors.GREY_800,
+                    ),
+                    padding=20,
                 ),
             ],
+            alignment=ft.MainAxisAlignment.START,
             spacing=20,
         ),
         expand=True,
-        alignment=ft.alignment.center,  # Centra todo el formulario
+        padding=20,
     )
 
     # Main Layout
@@ -96,7 +103,7 @@ def main(page: ft.Page):
         ft.Row(
             controls=[
                 sidebar,
-                content,
+                admin_info,
             ],
             expand=True,
         )

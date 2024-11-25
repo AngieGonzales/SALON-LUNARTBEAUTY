@@ -1,11 +1,26 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.title = "LunArtBeauty - Usuarios"
+    page.title = "LunArtBeauty - Editar Productos"
     page.bgcolor = ft.colors.WHITE
     page.scroll = ft.ScrollMode.ALWAYS
     page.vertical_alignment = ft.MainAxisAlignment.START
 
+    selected_image = ft.Image(src=None, width=200, height=200)
+
+    def upload_file(e):
+        file_dialog.pick_files(allow_multiple=False)
+
+    def on_file_picked(e):
+        if e.files:
+            # Mostrar la imagen seleccionada
+            selected_image.src = e.files[0].path
+            selected_image.update()
+            print(f"File selected: {e.files[0].name}")
+        else:
+            print("No file selected")
+
+    file_dialog = ft.FilePicker(on_result=on_file_picked)
 
     sidebar = ft.Container(
         content=ft.Column(
@@ -46,45 +61,33 @@ def main(page: ft.Page):
         padding=20,
     )
 
-    content_header = ft.Container(
-        content=ft.Text("LISTA DE USUARIOS", size=24, weight="bold"),
-        padding=20,
-        alignment=ft.alignment.center,
-    )
-
-    table_header = ft.Row(
-        controls=[
-            ft.Text("ID", weight="bold"),
-            ft.Text("NOMBRE", weight="bold"),
-            ft.Text("APELLIDO", weight="bold"),
-            ft.Text("CELULAR", weight="bold"),
-            ft.Text("CORREO", weight="bold"),
-            ft.Text("NACIMIENTO", weight="bold"),
-            ft.Text("ROL", weight="bold"),
-        ],
-        alignment=ft.MainAxisAlignment.SPACE_AROUND,
-        height=40,
-    )
-
-    # Main Layout
-    page.add(
-        ft.Row(
-            controls=[
-                sidebar,
-                ft.Container(
-                    content=ft.Column(
-                        controls=[
-                            content_header,
-                            table_header,
-                        ],
-                        spacing=20,
-                    ),
-                    expand=True,
-                    padding=20,
-                ),
+    content = ft.Container(
+        content=ft.Column(
+            [
+                ft.Text("EDITAR PRODUCTOS", size=24, weight="bold", font_family="Times New Roman"),
+                ft.ElevatedButton("Seleccionar Imagen", on_click=upload_file, color=ft.colors.PINK),
+                selected_image,
+                ft.TextField(label="Nombre", width=500),
+                ft.TextField(label="Precio", width=500),
+                ft.TextField(label="Stock", width=500),
+                ft.ElevatedButton("ACTUALIZAR", on_click=lambda _: print("Servicio actualizado"), color=ft.colors.PINK, icon=ft.icons.UPDATE),
             ],
-        )
+            spacing=20,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Centra los elementos horizontalmente
+            alignment=ft.MainAxisAlignment.CENTER,  # Centra los elementos verticalmente
+        ),
+        alignment=ft.alignment.center,  # Centra el contenido en relación al contenedor
+        expand=True,
+        padding=20,
     )
 
+    # Main layout
+    main_layout = ft.Row(
+        [sidebar, content],
+        expand=True,
+    )
+
+    page.overlay.append(file_dialog)
+    page.add(main_layout)
 
 ft.app(target=main)

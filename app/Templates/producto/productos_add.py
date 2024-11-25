@@ -47,14 +47,19 @@ def main(page: ft.Page):
         padding=20,
     )
 
-    # Content: Form to Add Services
     content = ft.Container(
         content=ft.Column(
             controls=[
                 ft.Container(
-                    content=ft.Text("AGREGAR SERVICIOS", size=28, weight="bold"),
+                    content=ft.Text("AGREGAR PRODUCTOS", size=28, weight="bold", font_family="Times New Roman"),
                     alignment=ft.alignment.center,  # Centra el título
                     padding=ft.padding.symmetric(vertical=20),
+                ),
+                ft.Row(
+                    controls=[
+                        ft.TextField(label="Nombre", width=400),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
                 ),
                 ft.Row(
                     controls=[
@@ -64,13 +69,19 @@ def main(page: ft.Page):
                 ),
                 ft.Row(
                     controls=[
-                        ft.TextField(label="Nombre Servicio", width=400),
+                        ft.TextField(label="Precio", width=400),
                     ],
                     alignment=ft.MainAxisAlignment.CENTER,
                 ),
                 ft.Row(
                     controls=[
-                        ft.TextField(label="Descripción Servicio", width=400),
+                        ft.TextField(label="Categoria", width=400),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
+                ),
+                ft.Row(
+                    controls=[
+                        ft.TextField(label="Stock", width=400),
                     ],
                     alignment=ft.MainAxisAlignment.CENTER,
                 ),

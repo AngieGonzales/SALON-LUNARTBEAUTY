@@ -1,7 +1,7 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.title = "LunArtBeauty - Usuarios"
+    page.title = "LunArtBeauty - Srevicios Administrador"
     page.bgcolor = ft.colors.WHITE
     page.scroll = ft.ScrollMode.ALWAYS
     page.vertical_alignment = ft.MainAxisAlignment.START
@@ -47,7 +47,7 @@ def main(page: ft.Page):
     )
 
     content_header = ft.Container(
-        content=ft.Text("LISTA DE USUARIOS", size=24, weight="bold"),
+        content=ft.Text("LISTA DE SERVICIOS", size=24, weight="bold", font_family="Times New Roman"),
         padding=20,
         alignment=ft.alignment.center,
     )
@@ -56,14 +56,20 @@ def main(page: ft.Page):
         controls=[
             ft.Text("ID", weight="bold"),
             ft.Text("NOMBRE", weight="bold"),
-            ft.Text("APELLIDO", weight="bold"),
-            ft.Text("CELULAR", weight="bold"),
-            ft.Text("CORREO", weight="bold"),
-            ft.Text("NACIMIENTO", weight="bold"),
-            ft.Text("ROL", weight="bold"),
+            ft.Text("PRECIO", weight="bold"),
+            ft.Text("IMAGEN", weight="bold"),
+            ft.Text("CATEGORIA", weight="bold"),
+            ft.Text("STOCK", weight="bold"),
         ],
         alignment=ft.MainAxisAlignment.SPACE_AROUND,
         height=40,
+    )
+    add_button = ft.Container(
+        content=ft.ElevatedButton(
+            text="AGREGAR", on_click=lambda e: None, icon=ft.icons.ADD, color=ft.colors.PINK
+        ),
+        alignment=ft.alignment.center,
+        padding=20,
     )
 
     # Main Layout
@@ -76,6 +82,7 @@ def main(page: ft.Page):
                         controls=[
                             content_header,
                             table_header,
+                            add_button,
                         ],
                         spacing=20,
                     ),
@@ -85,6 +92,5 @@ def main(page: ft.Page):
             ],
         )
     )
-
 
 ft.app(target=main)

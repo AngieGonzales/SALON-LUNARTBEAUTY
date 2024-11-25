@@ -16,7 +16,7 @@ def main(page: ft.Page):
                     size=30,
                     weight="bold",
                     color=ft.colors.BLACK,
-                    font_family="Times New Roman",  # Elegante tipo de letra
+                    font_family="Arizonia",  # Elegante tipo de letra
                 ),
             ],
             alignment=ft.MainAxisAlignment.START,
@@ -29,7 +29,7 @@ def main(page: ft.Page):
     # Título principal con un toque de elegancia
     titulo = ft.Container(
         content=ft.Text(
-            "EDITAR CITA",
+            "EDITAR ESTILISTA",
             size=24,
             weight="bold",
             color=ft.colors.GREY_900,
@@ -43,21 +43,18 @@ def main(page: ft.Page):
     campo_nombre = ft.TextField(
         label="Nombre", 
         width=500, 
-        value="Juan Pérez", 
         border_radius=ft.border_radius.all(10), 
         bgcolor=ft.colors.GREY_100
     )
     campo_apellido = ft.TextField(
         label="Apellido", 
         width=500, 
-        value="Pérez", 
         border_radius=ft.border_radius.all(10), 
         bgcolor=ft.colors.GREY_100
     )
     campo_telefono = ft.TextField(
         label="Teléfono", 
         width=500, 
-        value="123456789", 
         border_radius=ft.border_radius.all(10), 
         bgcolor=ft.colors.GREY_100
     )
