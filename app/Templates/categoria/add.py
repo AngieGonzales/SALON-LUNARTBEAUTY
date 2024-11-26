@@ -2,9 +2,9 @@ import flet as ft
 
 
 def main(page: ft.Page):
-    page.title = "LunArt Beauty - Admin Panel"
-    page.bgcolor = ft.colors.WHITE
+    page.title = "Agregar Categorías - LunArt Beauty"
     page.scroll = ft.ScrollMode.ALWAYS
+    page.bgcolor = ft.colors.WHITE
 
     # Sidebar
     sidebar = ft.Container(
@@ -16,7 +16,7 @@ def main(page: ft.Page):
                     content=ft.Column(
                         [
                             ft.Text("LunArt Beauty", size=24, weight="bold"),
-                            ft.Image(src="path/to/estilistaa.png", width=100, height=100),
+                            ft.Image(src="path/to/editar.png", width=100, height=100),
                         ],
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         spacing=10,
@@ -54,8 +54,8 @@ def main(page: ft.Page):
                         ),
                         ft.ListTile(
                             leading=ft.Image(src="path/to/personas.png", width=30, height=30),
-                            title=ft.Text("CLIENTES"),
-                            on_click=lambda _: print("Ir a Clientes"),
+                            title=ft.Text("LISTA CLIENTES"),
+                            on_click=lambda _: print("Ir a Lista Clientes"),
                         ),
                     ],
                 ),
@@ -65,33 +65,52 @@ def main(page: ft.Page):
         ),
     )
 
-    # Main content
-    admin_info = ft.Container(
-        expand=True,
-        content=ft.Column(
-            [
-                ft.Text("ADMINISTRADOR - LUNART BEAUTY", size=28, weight="bold", color=ft.colors.GREY_800),
-                ft.Container(
-                    content=ft.Text(
-                        "¡Bienvenido al panel de control de LunArt Beauty!\n\n"
-                        "Gestiona eficientemente todos los aspectos de tu salón de belleza: productos, servicios, citas y clientes.\n\n"
-                        "¡Que tengas un excelente día!",
-                        size=16,
-                        color=ft.colors.GREY_600,
-                    ),
-                    padding=20,
-                ),
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=20,
-        ),
+    # Formulario para agregar categorías
+    def agregar_categoria(e):
+        nombre = campo_nombre.value
+        descripcion = campo_descripcion.value
+        imagen = campo_imagen.src
+
+        if not nombre or not descripcion or not imagen:
+            page.snack_bar = ft.SnackBar(ft.Text("Todos los campos son obligatorios."))
+            page.snack_bar.open = True
+            page.update()
+        else:
+            print(f"Categoría agregada: {nombre}, {descripcion}, {imagen}")
+            # Aquí puedes añadir la lógica para guardar los datos
+
+    campo_nombre = ft.TextField(label="Nombre", width=400)
+    campo_descripcion = ft.TextField(label="Descripción", width=400)
+    campo_imagen = ft.FilePicker(on_result=lambda e: print(e.files[0].name))
+
+    boton_filepicker = ft.ElevatedButton(
+        text="Subir Imagen",
+        on_click=lambda _: page.dialog.show_picker(campo_imagen),
     )
 
-    # Layout
+    boton_agregar = ft.ElevatedButton(
+        text="AGREGAR",
+        bgcolor=ft.colors.GREEN,
+        color=ft.colors.WHITE,
+        on_click=agregar_categoria,
+    )
+
+    form_content = ft.Column(
+        [
+            ft.Text("AGREGAR CATEGORÍAS", size=24, weight="bold"),
+            campo_nombre,
+            campo_descripcion,
+            ft.Row([boton_filepicker, ft.Text("Selecciona una imagen...", size=12)]),
+            boton_agregar,
+        ],
+        spacing=20,
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+    )
+
+    # Layout principal
     page.add(
         ft.Row(
-            [sidebar, admin_info],
+            [sidebar, ft.Container(expand=True, content=form_content, padding=20)],
             expand=True,
             spacing=0,
         )
